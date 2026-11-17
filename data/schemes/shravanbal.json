@@ -1,0 +1,64 @@
+{
+  "id": "shravanbal",
+  "level": "state",
+  "states": [
+    "maharashtra"
+  ],
+  "category": "pension",
+  "name": {
+    "en": "Shravanbal Seva State Pension Scheme",
+    "hi": "श्रावणबाळ सेवा राज्य निवृत्तिवेतन योजना",
+    "mr": "श्रावणबाळ सेवा राज्य निवृत्तीवेतन योजना"
+  },
+  "benefit": {
+    "en": "Monthly old-age pension from the Maharashtra government (check current amount on the official page)",
+    "hi": "महाराष्ट्र सरकार से मासिक वृद्धावस्था पेंशन (वर्तमान राशि आधिकारिक पेज पर देखें)",
+    "mr": "महाराष्ट्र शासनाकडून मासिक वृद्धापकाळ पेन्शन (सध्याची रक्कम अधिकृत पानावर तपासा)"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 65
+      },
+      {
+        "any_of": [
+          {
+            "field": "is_bpl",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "annual_family_income",
+            "op": "lte",
+            "value": 21000
+          }
+        ]
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": []
+  },
+  "documents": [
+    "Age proof",
+    "Maharashtra domicile (15+ years)",
+    "BPL card or income certificate",
+    "Bank account"
+  ],
+  "how_to_apply": {
+    "en": "Apply on aaplesarkar.mahaonline.gov.in or at the Tehsil office.",
+    "hi": "aaplesarkar.mahaonline.gov.in पर या तहसील कार्यालय में आवेदन करें।",
+    "mr": "aaplesarkar.mahaonline.gov.in वर किंवा तहसील कार्यालयात अर्ज करा."
+  },
+  "also_check": [
+    "Applicant must be destitute",
+    "Must be a Maharashtra resident for at least 15 years"
+  ],
+  "official_url": "https://sjsa.maharashtra.gov.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/sbssps",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

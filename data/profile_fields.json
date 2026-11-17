@@ -1,0 +1,183 @@
+{
+  "age": {
+    "type": "int",
+    "question": {
+      "en": "How old are you?",
+      "hi": "आपकी उम्र कितनी है?",
+      "mr": "तुमचे वय किती आहे?"
+    }
+  },
+  "gender": {
+    "type": "enum",
+    "values": [
+      "male",
+      "female",
+      "other"
+    ],
+    "question": {
+      "en": "Are you male or female?",
+      "hi": "आप पुरुष हैं या महिला?",
+      "mr": "तुम्ही पुरुष आहात की महिला?"
+    }
+  },
+  "state": {
+    "type": "str",
+    "question": {
+      "en": "Which state do you live in?",
+      "hi": "आप किस राज्य में रहते हैं?",
+      "mr": "तुम्ही कोणत्या राज्यात राहता?"
+    }
+  },
+  "owns_cultivable_land": {
+    "type": "bool",
+    "question": {
+      "en": "Does your family own farm land in your name?",
+      "hi": "क्या आपके परिवार के नाम पर खेती की ज़मीन है?",
+      "mr": "तुमच्या कुटुंबाच्या नावावर शेतजमीन आहे का?"
+    }
+  },
+  "is_income_tax_payer": {
+    "type": "bool",
+    "question": {
+      "en": "Did anyone in your family pay income tax last year?",
+      "hi": "क्या पिछले साल आपके परिवार में किसी ने इनकम टैक्स भरा था?",
+      "mr": "गेल्या वर्षी तुमच्या कुटुंबातील कोणी आयकर भरला होता का?"
+    }
+  },
+  "is_govt_employee": {
+    "type": "bool",
+    "question": {
+      "en": "Is anyone in your family a regular government / PSU employee or government pensioner (other than Group D / Multi Tasking Staff)?",
+      "hi": "क्या परिवार में कोई नियमित सरकारी / PSU कर्मचारी या सरकारी पेंशनभोगी है (ग्रुप D / MTS को छोड़कर)?",
+      "mr": "कुटुंबात कोणी नियमित सरकारी / PSU कर्मचारी किंवा सरकारी पेन्शनधारक आहे का (गट ड / MTS सोडून)?"
+    }
+  },
+  "monthly_pension": {
+    "type": "int",
+    "question": {
+      "en": "If anyone in your family gets a pension, how much per month? (Say 0 if none)",
+      "hi": "अगर परिवार में किसी को पेंशन मिलती है, तो हर महीने कितनी? (न हो तो 0)",
+      "mr": "कुटुंबातील कोणाला पेन्शन मिळते का? दरमहा किती? (नसल्यास 0)"
+    }
+  },
+  "is_professional": {
+    "type": "bool",
+    "question": {
+      "en": "Is anyone in your family a registered doctor, engineer, lawyer, CA or architect in practice?",
+      "hi": "क्या परिवार में कोई डॉक्टर, इंजीनियर, वकील, CA या आर्किटेक्ट के रूप में प्रैक्टिस करता है?",
+      "mr": "कुटुंबात कोणी डॉक्टर, इंजिनिअर, वकील, CA किंवा आर्किटेक्ट म्हणून व्यवसाय करतो का?"
+    }
+  },
+  "is_constitutional_post_holder": {
+    "type": "bool",
+    "question": {
+      "en": "Is anyone in your family a current or former MP, MLA, minister or mayor?",
+      "hi": "क्या परिवार में कोई वर्तमान या पूर्व सांसद, विधायक, मंत्री या महापौर है?",
+      "mr": "कुटुंबात कोणी आजी किंवा माजी खासदार, आमदार, मंत्री किंवा महापौर आहे का?"
+    }
+  },
+  "is_pm_kisan_beneficiary": {
+    "type": "bool",
+    "question": {
+      "en": "Do you already receive PM-KISAN money?",
+      "hi": "क्या आपको पहले से PM-KISAN का पैसा मिलता है?",
+      "mr": "तुम्हाला आधीपासून PM-KISAN चे पैसे मिळतात का?"
+    }
+  },
+  "household_has_lpg": {
+    "type": "bool",
+    "question": {
+      "en": "Does your household already have an LPG gas connection?",
+      "hi": "क्या आपके घर में पहले से LPG गैस कनेक्शन है?",
+      "mr": "तुमच्या घरी आधीपासून LPG गॅस कनेक्शन आहे का?"
+    }
+  },
+  "is_poor_household": {
+    "type": "bool",
+    "question": {
+      "en": "Is your household poor — e.g. SC/ST, Antyodaya ration card, PM Awas (Gramin) beneficiary, or otherwise low income?",
+      "hi": "क्या आपका परिवार गरीब है — जैसे SC/ST, अंत्योदय राशन कार्ड, PM आवास (ग्रामीण) लाभार्थी, या कम आय वाला?",
+      "mr": "तुमचे कुटुंब गरीब आहे का — उदा. SC/ST, अंत्योदय रेशन कार्ड, PM आवास (ग्रामीण) लाभार्थी किंवा कमी उत्पन्न?"
+    }
+  },
+  "has_bank_account": {
+    "type": "bool",
+    "question": {
+      "en": "Do you have a bank or post office savings account?",
+      "hi": "क्या आपका बैंक या डाकघर में बचत खाता है?",
+      "mr": "तुमचे बँक किंवा पोस्ट ऑफिसमध्ये बचत खाते आहे का?"
+    }
+  },
+  "annual_family_income": {
+    "type": "int",
+    "question": {
+      "en": "What is your family's total income per year, in rupees?",
+      "hi": "आपके परिवार की कुल सालाना आय कितनी है (रुपये में)?",
+      "mr": "तुमच्या कुटुंबाचे एकूण वार्षिक उत्पन्न किती आहे (रुपयांत)?"
+    }
+  },
+  "is_self_income_tax_payer": {
+    "type": "bool",
+    "question": {
+      "en": "Have you yourself ever paid income tax?",
+      "hi": "क्या आपने खुद कभी इनकम टैक्स भरा है?",
+      "mr": "तुम्ही स्वतः कधी आयकर भरला आहे का?"
+    }
+  },
+  "land_hectares": {
+    "type": "float",
+    "question": {
+      "en": "How much farm land do you own, in hectares? (1 hectare ≈ 2.5 acres)",
+      "hi": "आपके पास कितनी खेती की ज़मीन है, हेक्टेयर में? (1 हेक्टेयर ≈ 2.5 एकड़)",
+      "mr": "तुमच्याकडे किती शेतजमीन आहे, हेक्टरमध्ये? (1 हेक्टर ≈ 2.5 एकर)"
+    }
+  },
+  "has_other_pension_scheme": {
+    "type": "bool",
+    "question": {
+      "en": "Are you already in NPS, EPF, ESIC, PM Shram Yogi Maandhan or PM Vyapari Maandhan?",
+      "hi": "क्या आप पहले से NPS, EPF, ESIC, PM श्रम योगी मानधन या PM व्यापारी मानधन में हैं?",
+      "mr": "तुम्ही आधीच NPS, EPF, ESIC, PM श्रम योगी मानधन किंवा PM व्यापारी मानधन योजनेत आहात का?"
+    }
+  },
+  "is_cultivator": {
+    "type": "bool",
+    "question": {
+      "en": "Do you grow crops — as owner, tenant or sharecropper?",
+      "hi": "क्या आप खेती करते हैं — मालिक, किरायेदार या बटाईदार के रूप में?",
+      "mr": "तुम्ही शेती करता का — मालक, कुळ किंवा बटाईदार म्हणून?"
+    }
+  },
+  "is_street_vendor": {
+    "type": "bool",
+    "question": {
+      "en": "Do you work as a street vendor (thela, rehdi, footpath stall)?",
+      "hi": "क्या आप रेहड़ी-पटरी / ठेला लगाते हैं?",
+      "mr": "तुम्ही फेरीवाले आहात का (हातगाडी, फूटपाथवरील दुकान)?"
+    }
+  },
+  "is_pregnant_or_new_mother": {
+    "type": "bool",
+    "question": {
+      "en": "Are you pregnant, or did you give birth in the last 9 months?",
+      "hi": "क्या आप गर्भवती हैं, या पिछले 9 महीनों में बच्चे को जन्म दिया है?",
+      "mr": "तुम्ही गर्भवती आहात का, किंवा गेल्या 9 महिन्यांत बाळंतपण झाले आहे का?"
+    }
+  },
+  "owns_four_wheeler": {
+    "type": "bool",
+    "question": {
+      "en": "Does anyone in your family own a car or other four-wheeler (tractor doesn't count)?",
+      "hi": "क्या परिवार में किसी के नाम पर कार या चार-पहिया वाहन है (ट्रैक्टर नहीं गिना जाता)?",
+      "mr": "कुटुंबातील कोणाच्या नावावर कार किंवा चारचाकी आहे का (ट्रॅक्टर धरला जात नाही)?"
+    }
+  },
+  "is_bpl": {
+    "type": "bool",
+    "question": {
+      "en": "Is your family on the BPL (Below Poverty Line) list?",
+      "hi": "क्या आपका परिवार BPL (गरीबी रेखा से नीचे) सूची में है?",
+      "mr": "तुमचे कुटुंब BPL (दारिद्र्यरेषेखालील) यादीत आहे का?"
+    }
+  }
+}

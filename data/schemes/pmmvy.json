@@ -1,0 +1,85 @@
+{
+  "id": "pmmvy",
+  "level": "central",
+  "states": [
+    "*"
+  ],
+  "category": "women_child",
+  "name": {
+    "en": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
+    "hi": "प्रधानमंत्री मातृ वंदना योजना",
+    "mr": "प्रधानमंत्री मातृ वंदना योजना"
+  },
+  "benefit": {
+    "en": "₹5,000 for the first child (₹3,000 + ₹2,000); ₹6,000 if the second child is a girl",
+    "hi": "पहले बच्चे के लिए ₹5,000 (₹3,000 + ₹2,000); दूसरी संतान बेटी हो तो ₹6,000",
+    "mr": "पहिल्या अपत्यासाठी ₹5,000 (₹3,000 + ₹2,000); दुसरे अपत्य मुलगी असल्यास ₹6,000"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female"
+      },
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 19
+      },
+      {
+        "field": "is_pregnant_or_new_mother",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "any_of": [
+          {
+            "field": "is_poor_household",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "is_bpl",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "annual_family_income",
+            "op": "lt",
+            "value": 800000
+          }
+        ]
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": [
+      {
+        "field": "is_govt_employee",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "documents": [
+    "Aadhaar card",
+    "MCP (Mother and Child Protection) card",
+    "Bank / post office account",
+    "Proof of eligible category"
+  ],
+  "how_to_apply": {
+    "en": "Register at your Anganwadi centre or approved health facility, or on the PMMVY portal, within 270 days of childbirth.",
+    "hi": "बच्चे के जन्म के 270 दिनों के भीतर आंगनवाड़ी केंद्र, स्वास्थ्य केंद्र या PMMVY पोर्टल पर पंजीकरण करें।",
+    "mr": "बाळाच्या जन्मानंतर 270 दिवसांच्या आत अंगणवाडी केंद्र, आरोग्य केंद्र किंवा PMMVY पोर्टलवर नोंदणी करा."
+  },
+  "also_check": [
+    "Applies to the first child, or the second child if it is a girl",
+    "Eligible categories also include SC/ST, Divyang, e-Shram, MGNREGA job card, PM-KISAN women farmers, PM-JAY, ASHA/Anganwadi workers"
+  ],
+  "official_url": "https://wcd.nic.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/pmmvy",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

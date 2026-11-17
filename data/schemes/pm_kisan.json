@@ -1,0 +1,75 @@
+{
+  "id": "pm_kisan",
+  "level": "central",
+  "states": [
+    "*"
+  ],
+  "category": "agriculture",
+  "name": {
+    "en": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+    "hi": "पीएम-किसान सम्मान निधि",
+    "mr": "पीएम-किसान सन्मान निधी"
+  },
+  "benefit": {
+    "en": "₹6,000 per year per family, in 3 instalments of ₹2,000 directly to the bank account",
+    "hi": "प्रति परिवार ₹6,000 प्रति वर्ष, ₹2,000 की 3 किस्तों में सीधे बैंक खाते में",
+    "mr": "प्रति कुटुंब दरवर्षी ₹6,000, ₹2,000 च्या 3 हप्त्यांत थेट बँक खात्यात"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "owns_cultivable_land",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": [
+      {
+        "field": "is_income_tax_payer",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "is_govt_employee",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "is_constitutional_post_holder",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "is_professional",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "monthly_pension",
+        "op": "gte",
+        "value": 10000
+      }
+    ]
+  },
+  "documents": [
+    "Aadhaar card",
+    "Land ownership record (7/12 extract in Maharashtra)",
+    "Savings bank account"
+  ],
+  "how_to_apply": {
+    "en": "Register on pmkisan.gov.in (New Farmer Registration) or at a CSC centre. e-KYC is mandatory.",
+    "hi": "pmkisan.gov.in पर (New Farmer Registration) या CSC केंद्र पर पंजीकरण करें। e-KYC अनिवार्य है।",
+    "mr": "pmkisan.gov.in वर (New Farmer Registration) किंवा CSC केंद्रावर नोंदणी करा. e-KYC आवश्यक आहे."
+  },
+  "also_check": [
+    "Institutional landholders are not eligible",
+    "Group D / MTS employees and pensioners are NOT excluded"
+  ],
+  "official_url": "https://pmkisan.gov.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/pm-kisan",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

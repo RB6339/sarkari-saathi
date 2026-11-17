@@ -1,0 +1,48 @@
+{
+  "id": "namo_shetkari",
+  "level": "state",
+  "states": [
+    "maharashtra"
+  ],
+  "category": "agriculture",
+  "name": {
+    "en": "Namo Shetkari Mahasanman Nidhi Yojana",
+    "hi": "नमो शेतकरी महासम्मान निधि योजना",
+    "mr": "नमो शेतकरी महासन्मान निधी योजना"
+  },
+  "benefit": {
+    "en": "Additional ₹6,000 per year from Maharashtra (₹12,000 total with PM-KISAN), in instalments of ₹2,000",
+    "hi": "महाराष्ट्र से ₹6,000 प्रति वर्ष अतिरिक्त (PM-KISAN के साथ कुल ₹12,000), ₹2,000 की किस्तों में",
+    "mr": "महाराष्ट्राकडून दरवर्षी अतिरिक्त ₹6,000 (PM-KISAN सह एकूण ₹12,000), ₹2,000 च्या हप्त्यांत"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "is_pm_kisan_beneficiary",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": []
+  },
+  "documents": [
+    "Active PM-KISAN registration",
+    "Aadhaar-linked bank account"
+  ],
+  "how_to_apply": {
+    "en": "No separate form — register on the PM-KISAN portal; eligible Maharashtra PM-KISAN beneficiaries are included after taluka/district/state approval.",
+    "hi": "अलग फॉर्म नहीं — PM-KISAN पोर्टल पर पंजीकरण करें; महाराष्ट्र के पात्र PM-KISAN लाभार्थी तालुका/जिला/राज्य स्तर की मंज़ूरी के बाद शामिल होते हैं।",
+    "mr": "वेगळा अर्ज नाही — PM-KISAN पोर्टलवर नोंदणी करा; महाराष्ट्रातील पात्र PM-KISAN लाभार्थी तालुका/जिल्हा/राज्य स्तरावरील मंजुरीनंतर समाविष्ट होतात."
+  },
+  "also_check": [
+    "Land must be held as on 01.02.2019",
+    "Benefit credited only to Aadhaar-linked bank account"
+  ],
+  "official_url": "http://nsmny.mahait.org",
+  "source_url": "https://www.myscheme.gov.in/schemes/namo-shetkari-mahasanman-nidhi-yojana",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

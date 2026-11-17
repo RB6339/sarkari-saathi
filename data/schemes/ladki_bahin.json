@@ -1,0 +1,93 @@
+{
+  "id": "ladki_bahin",
+  "level": "state",
+  "states": [
+    "maharashtra"
+  ],
+  "category": "women_child",
+  "name": {
+    "en": "Mukhyamantri Majhi Ladki Bahin Yojana",
+    "hi": "मुख्यमंत्री माझी लाडकी बहीण योजना",
+    "mr": "मुख्यमंत्री माझी लाडकी बहीण योजना"
+  },
+  "benefit": {
+    "en": "₹1,500 per month directly to the woman's bank account",
+    "hi": "महिला के बैंक खाते में सीधे ₹1,500 प्रति माह",
+    "mr": "महिलेच्या बँक खात्यात थेट दरमहा ₹1,500"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female"
+      },
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 21
+      },
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 65
+      },
+      {
+        "field": "annual_family_income",
+        "op": "lte",
+        "value": 250000
+      },
+      {
+        "field": "has_bank_account",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": [
+      {
+        "field": "is_income_tax_payer",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "is_govt_employee",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "is_constitutional_post_holder",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "owns_four_wheeler",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "documents": [
+    "Aadhaar card",
+    "Maharashtra domicile / residence proof",
+    "Income certificate (or yellow/orange ration card)",
+    "Aadhaar-linked bank account"
+  ],
+  "how_to_apply": {
+    "en": "Apply online on the official Ladki Bahin portal or through Anganwadi / Setu centres.",
+    "hi": "आधिकारिक लाडकी बहीण पोर्टल पर या आंगनवाड़ी / सेतु केंद्र के माध्यम से आवेदन करें।",
+    "mr": "अधिकृत लाडकी बहीण पोर्टलवर किंवा अंगणवाडी / सेतू केंद्रामार्फत अर्ज करा."
+  },
+  "also_check": [
+    "Must be married, widowed, divorced, abandoned/destitute, or one unmarried woman per family",
+    "Not eligible if already getting ₹1,500/month from another government scheme",
+    "Government pensioners in the family also exclude (no Group D exception here)",
+    "Tractor does not count as a four-wheeler"
+  ],
+  "official_url": "https://ladakibahin.maharashtra.gov.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/mmlby",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

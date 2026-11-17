@@ -1,0 +1,64 @@
+{
+  "id": "apy",
+  "level": "central",
+  "states": [
+    "*"
+  ],
+  "category": "pension",
+  "name": {
+    "en": "Atal Pension Yojana (APY)",
+    "hi": "अटल पेंशन योजना",
+    "mr": "अटल पेन्शन योजना"
+  },
+  "benefit": {
+    "en": "Guaranteed pension of ₹1,000–₹5,000 per month after age 60; same pension to spouse after death",
+    "hi": "60 वर्ष के बाद ₹1,000–₹5,000 प्रति माह गारंटीड पेंशन; मृत्यु के बाद पति/पत्नी को वही पेंशन",
+    "mr": "60 वर्षांनंतर दरमहा ₹1,000–₹5,000 हमी पेन्शन; मृत्यूनंतर पती/पत्नीला तीच पेन्शन"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 40
+      },
+      {
+        "field": "has_bank_account",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": [
+      {
+        "field": "is_self_income_tax_payer",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "documents": [
+    "Savings bank account",
+    "Aadhaar card",
+    "Mobile number"
+  ],
+  "how_to_apply": {
+    "en": "Open APY through your bank branch or net banking; monthly contribution is auto-debited until age 60.",
+    "hi": "अपनी बैंक शाखा या नेट बैंकिंग से APY खोलें; 60 वर्ष तक मासिक योगदान ऑटो-डेबिट होता है।",
+    "mr": "तुमच्या बँक शाखेतून किंवा नेट बँकिंगने APY सुरू करा; 60 वर्षांपर्यंत मासिक योगदान ऑटो-डेबिट होते."
+  },
+  "also_check": [
+    "Anyone who is or has ever been an income tax payer cannot join (from 1 Oct 2022)"
+  ],
+  "official_url": "https://jansuraksha.gov.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/apy",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

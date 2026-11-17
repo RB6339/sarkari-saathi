@@ -1,0 +1,65 @@
+{
+  "id": "pm_ujjwala",
+  "level": "central",
+  "states": [
+    "*"
+  ],
+  "category": "household",
+  "name": {
+    "en": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+    "hi": "प्रधानमंत्री उज्ज्वला योजना",
+    "mr": "प्रधानमंत्री उज्ज्वला योजना"
+  },
+  "benefit": {
+    "en": "Deposit-free LPG connection plus free first refill and stove",
+    "hi": "बिना डिपॉज़िट LPG कनेक्शन, साथ में पहली रीफिल और चूल्हा मुफ़्त",
+    "mr": "डिपॉझिटशिवाय LPG कनेक्शन, सोबत पहिली रिफिल आणि शेगडी मोफत"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female"
+      },
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "household_has_lpg",
+        "op": "eq",
+        "value": false
+      },
+      {
+        "field": "is_poor_household",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": []
+  },
+  "documents": [
+    "Aadhaar card",
+    "Ration card",
+    "Address proof",
+    "Passport size photo",
+    "Bank details"
+  ],
+  "how_to_apply": {
+    "en": "Apply on pmuy.gov.in (choose Indane / Bharatgas / HP Gas) or at the nearest LPG distributor.",
+    "hi": "pmuy.gov.in पर (इंडेन / भारतगैस / एचपी गैस चुनें) या नज़दीकी LPG वितरक के पास आवेदन करें।",
+    "mr": "pmuy.gov.in वर (इंडेन / भारतगॅस / एचपी गॅस निवडा) किंवा जवळच्या LPG वितरकाकडे अर्ज करा."
+  },
+  "also_check": [
+    "Poor household = SECC 2011 list, SC/ST, PMAY, AAY, forest dwellers, MBC, tea garden tribes, river islands, or a 14-point declaration"
+  ],
+  "official_url": "https://www.pmuy.gov.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/pmuy",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

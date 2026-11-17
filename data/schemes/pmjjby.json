@@ -1,0 +1,56 @@
+{
+  "id": "pmjjby",
+  "level": "central",
+  "states": [
+    "*"
+  ],
+  "category": "insurance",
+  "name": {
+    "en": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+    "hi": "प्रधानमंत्री जीवन ज्योति बीमा योजना",
+    "mr": "प्रधानमंत्री जीवन ज्योती विमा योजना"
+  },
+  "benefit": {
+    "en": "₹2 lakh life cover (death due to any reason) for ₹436 per year, auto-debited from your bank account",
+    "hi": "₹436 प्रति वर्ष में ₹2 लाख का जीवन बीमा (किसी भी कारण से मृत्यु), बैंक खाते से ऑटो-डेबिट",
+    "mr": "दरवर्षी ₹436 मध्ये ₹2 लाखांचे जीवन विमा संरक्षण (कोणत्याही कारणाने मृत्यू), बँक खात्यातून ऑटो-डेबिट"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 50
+      },
+      {
+        "field": "has_bank_account",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": []
+  },
+  "documents": [
+    "Bank / post office account",
+    "Aadhaar card",
+    "Enrolment form"
+  ],
+  "how_to_apply": {
+    "en": "Enrol through your bank / post office branch or net banking, or submit the form from jansuraksha.gov.in.",
+    "hi": "अपनी बैंक / डाकघर शाखा या नेट बैंकिंग से जुड़ें, या jansuraksha.gov.in का फॉर्म जमा करें।",
+    "mr": "तुमच्या बँक / पोस्ट ऑफिस शाखेतून किंवा नेट बँकिंगने नोंदणी करा, किंवा jansuraksha.gov.in वरील अर्ज जमा करा."
+  },
+  "also_check": [],
+  "official_url": "https://jansuraksha.gov.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/pmjjby",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

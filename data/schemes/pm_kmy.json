@@ -1,0 +1,94 @@
+{
+  "id": "pm_kmy",
+  "level": "central",
+  "states": [
+    "*"
+  ],
+  "category": "pension",
+  "name": {
+    "en": "Pradhan Mantri Kisan Maandhan Yojana (PM-KMY)",
+    "hi": "प्रधानमंत्री किसान मानधन योजना",
+    "mr": "प्रधानमंत्री किसान मानधन योजना"
+  },
+  "benefit": {
+    "en": "Pension of ₹3,000 per month after age 60; government matches your monthly contribution",
+    "hi": "60 वर्ष के बाद ₹3,000 प्रति माह पेंशन; सरकार आपके मासिक योगदान के बराबर राशि जोड़ती है",
+    "mr": "60 वर्षांनंतर दरमहा ₹3,000 पेन्शन; सरकार तुमच्या मासिक योगदानाइतकी रक्कम जमा करते"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 40
+      },
+      {
+        "field": "owns_cultivable_land",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "land_hectares",
+        "op": "lte",
+        "value": 2
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": [
+      {
+        "field": "is_income_tax_payer",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "is_govt_employee",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "is_constitutional_post_holder",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "is_professional",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "monthly_pension",
+        "op": "gte",
+        "value": 10000
+      },
+      {
+        "field": "has_other_pension_scheme",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "documents": [
+    "Aadhaar card",
+    "Land record",
+    "Savings bank account or PM-KISAN account"
+  ],
+  "how_to_apply": {
+    "en": "Enrol at a CSC centre or on pmkmy.gov.in.",
+    "hi": "CSC केंद्र पर या pmkmy.gov.in पर पंजीकरण करें।",
+    "mr": "CSC केंद्रावर किंवा pmkmy.gov.in वर नोंदणी करा."
+  },
+  "also_check": [
+    "Name must be in land records as on 01.08.2019"
+  ],
+  "official_url": "https://pmkmy.gov.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/pmkmdy",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

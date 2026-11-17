@@ -1,0 +1,49 @@
+{
+  "id": "pmfby",
+  "level": "central",
+  "states": [
+    "*"
+  ],
+  "category": "agriculture",
+  "name": {
+    "en": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    "hi": "प्रधानमंत्री फसल बीमा योजना",
+    "mr": "प्रधानमंत्री पीक विमा योजना"
+  },
+  "benefit": {
+    "en": "Crop insurance against drought, flood, pests and disease; farmer pays only 2% (kharif), 1.5% (rabi) or 5% (commercial) premium",
+    "hi": "सूखा, बाढ़, कीट और रोग से फसल बीमा; किसान केवल 2% (खरीफ), 1.5% (रबी) या 5% (व्यावसायिक) प्रीमियम देता है",
+    "mr": "दुष्काळ, पूर, कीड व रोगांपासून पीक विमा; शेतकरी फक्त 2% (खरीप), 1.5% (रब्बी) किंवा 5% (व्यावसायिक) हप्ता भरतो"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "is_cultivator",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": []
+  },
+  "documents": [
+    "Aadhaar card",
+    "Land record or tenancy agreement",
+    "Bank account",
+    "Sowing certificate"
+  ],
+  "how_to_apply": {
+    "en": "Apply on pmfby.gov.in, at a CSC centre, or through your bank — usually within 2 weeks of sowing.",
+    "hi": "pmfby.gov.in, CSC केंद्र या अपने बैंक के माध्यम से आवेदन करें — आमतौर पर बुवाई के 2 सप्ताह के भीतर।",
+    "mr": "pmfby.gov.in, CSC केंद्र किंवा तुमच्या बँकेमार्फत अर्ज करा — साधारणपणे पेरणीनंतर 2 आठवड्यांत."
+  },
+  "also_check": [
+    "Crop and area must be notified for the season"
+  ],
+  "official_url": "https://pmfby.gov.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/pmfby",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}

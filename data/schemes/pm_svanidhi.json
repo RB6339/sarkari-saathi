@@ -1,0 +1,48 @@
+{
+  "id": "pm_svanidhi",
+  "level": "central",
+  "states": [
+    "*"
+  ],
+  "category": "livelihood",
+  "name": {
+    "en": "PM SVANidhi (Street Vendor's AtmaNirbhar Nidhi)",
+    "hi": "पीएम स्वनिधि",
+    "mr": "पीएम स्वनिधी"
+  },
+  "benefit": {
+    "en": "Collateral-free working-capital loan for street vendors, with interest subsidy and no processing fee",
+    "hi": "रेहड़ी-पटरी विक्रेताओं के लिए बिना गारंटी का कार्यशील पूंजी ऋण, ब्याज सब्सिडी के साथ, कोई प्रोसेसिंग फीस नहीं",
+    "mr": "फेरीवाल्यांसाठी तारणाशिवाय खेळत्या भांडवलाचे कर्ज, व्याज अनुदानासह, प्रोसेसिंग फी नाही"
+  },
+  "eligibility": {
+    "all_of": [
+      {
+        "field": "is_street_vendor",
+        "op": "eq",
+        "value": true
+      }
+    ]
+  },
+  "exclusions": {
+    "any_of": []
+  },
+  "documents": [
+    "Certificate of Vending / ID card or Letter of Recommendation from the municipality",
+    "Aadhaar card",
+    "Bank account"
+  ],
+  "how_to_apply": {
+    "en": "Apply on pmsvanidhi.mohua.gov.in or through a CSC centre / bank.",
+    "hi": "pmsvanidhi.mohua.gov.in पर या CSC केंद्र / बैंक के माध्यम से आवेदन करें।",
+    "mr": "pmsvanidhi.mohua.gov.in वर किंवा CSC केंद्र / बँकेमार्फत अर्ज करा."
+  },
+  "also_check": [
+    "Must have a vending certificate, be in the ULB survey, or hold a Letter of Recommendation"
+  ],
+  "official_url": "https://pmsvanidhi.mohua.gov.in",
+  "source_url": "https://www.myscheme.gov.in/schemes/pm-svanidhi",
+  "verified": true,
+  "verified_on": "2026-11-17",
+  "verified_against": "myscheme.gov.in (Government of India)"
+}
