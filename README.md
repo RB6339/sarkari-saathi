@@ -1,26 +1,30 @@
-# Sarkari Saathi 🇮🇳
+# Sarkari Saathi
 
-**A voice assistant that tells people — in Marathi, Hindi or English — which government schemes they qualify for, what documents they need, and how to apply.**
+An assistant that helps people find which government schemes they can get, in Marathi, Hindi or English. You answer a few simple questions and it tells you which schemes you qualify for, what documents you need and how to apply.
 
-> Status: 🚧 Week 1 — 13 verified schemes + rule-based eligibility engine
+Right now this repo has the eligibility engine and the scheme data. The chat and voice parts are next.
 
-## Why
+## Why I built this
 
-Thousands of central and state schemes exist, but the people who need them most often don't know they qualify. Sarkari Saathi lets someone just *speak* in their own language and get a clear answer.
+There are hundreds of central and state schemes, and most people who need them don't know they qualify. The official portals are long forms in English. I wanted something you can just talk to in your own language.
 
-## Design principle: the LLM never decides eligibility
+## How it works
 
-| Layer | Responsibility |
-|---|---|
-| **Rules engine** (`app/eligibility`) | Deterministic eligibility check from structured scheme rules. Three-valued logic: eligible / not eligible / need more info. |
-| **LLM** (coming) | Conversation, language, extracting answers from free speech, explaining results. |
-| **RAG** (coming) | Answers detailed questions from official scheme documents, with citations. |
+The eligibility decision is made by plain rules, not by an LLM. LLMs can make mistakes with things like age limits or income limits, so I keep each scheme's rules as JSON and check them in code. The LLM (coming next) will only handle the conversation and explain the result.
 
-This keeps answers auditable: every "you qualify" can be traced to a specific rule and an official source.
+Each scheme gets one of three results:
 
-## Schemes covered (13)
+- eligible: all rules pass
+- not eligible: at least one rule fails
+- need info: nothing has failed yet but some answers are missing
 
-| Scheme | Level | Category |
+When answers are missing, the engine asks the question that is missing from the most schemes, so the user answers as few questions as possible.
+
+## Schemes
+
+13 schemes so far, 9 central and 4 Maharashtra:
+
+| Scheme | Level | Type |
 |---|---|---|
 | PM-KISAN | Central | Agriculture |
 | PM Fasal Bima Yojana | Central | Agriculture |
@@ -29,27 +33,26 @@ This keeps answers auditable: every "you qualify" can be traced to a specific ru
 | PM Jeevan Jyoti Bima | Central | Insurance |
 | PM Suraksha Bima | Central | Insurance |
 | PM Ujjwala Yojana | Central | Household |
-| PM Matru Vandana Yojana | Central | Women & child |
+| PM Matru Vandana Yojana | Central | Women and child |
 | PM SVANidhi | Central | Livelihood |
 | Namo Shetkari Mahasanman Nidhi | Maharashtra | Agriculture |
 | Majhi Ladki Bahin Yojana | Maharashtra | Women |
 | Shravanbal Seva Pension | Maharashtra | Pension |
 | Gopinath Munde Shetkari Apghat Suraksha | Maharashtra | Insurance |
 
-Every rule is checked against the scheme's page on [myScheme](https://www.myscheme.gov.in) (Government of India) and records `source_url` and `verified_on`. Conditions that can't be asked as a simple question (e.g. "first child only") are listed under `also_check` and shown to the user.
+I took the rules from each scheme's page on [myScheme](https://www.myscheme.gov.in). Every scheme file has a `source_url` and the date I checked it. Some conditions are hard to ask as a yes/no question (for example "first child only"), so those are kept in `also_check` and shown to the user as a note.
 
-## Project structure
+## Folder structure
 
 ```
-data/
-  schemes/*.json        # one file per scheme: rules, benefit, documents, source
-  profile_fields.json   # each user attribute + follow-up question in en/hi/mr
-app/eligibility/engine.py
-tests/
-demo.py                 # CLI demo
+app/eligibility/engine.py   rules engine
+data/schemes/               one JSON file per scheme
+data/profile_fields.json    questions in English, Hindi and Marathi
+tests/                      pytest tests
+demo.py                     small command line demo
 ```
 
-## Scheme format
+## Scheme file example
 
 ```json
 {
@@ -60,34 +63,36 @@ demo.py                 # CLI demo
       {"any_of": [ {"field": "is_bpl", "op": "eq", "value": true},
                    {"field": "annual_family_income", "op": "lte", "value": 21000} ]}
   ] },
-  "exclusions":  { "any_of": [] },
+  "exclusions": { "any_of": [] },
   "also_check": ["Applicant must be destitute"],
-  "source_url": "https://www.myscheme.gov.in/schemes/...",
+  "source_url": "https://www.myscheme.gov.in/schemes/sbssps",
   "verified": true
 }
 ```
 
-Rules support nested `all_of` / `any_of` groups.
+`all_of` means every rule must pass, `any_of` means at least one must pass. They can be nested.
 
-## Run
+## Running it
 
 ```bash
 pip install -r requirements.txt
 pytest
-python demo.py      # Marathi  (en / hi also supported)
+python demo.py        # Marathi
+python demo.py en     # English
+python demo.py hi     # Hindi
 ```
 
-## Roadmap
+## To do
 
-- [x] Scheme data format + eligibility engine + tests
-- [x] First 13 central + Maharashtra schemes
-- [ ] 50–100 schemes
-- [ ] LLM conversation layer (Marathi / Hindi / English)
-- [ ] RAG over official scheme documents with citations
-- [ ] Voice in / voice out
-- [ ] Web app + deployment
-- [ ] Evaluation set + accuracy report
+- [x] Rules engine and tests
+- [x] First 13 schemes
+- [ ] More schemes (target 50+)
+- [ ] Chat layer with an LLM
+- [ ] Answer questions from official scheme documents
+- [ ] Voice input and output
+- [ ] Web app
+- [ ] Accuracy test set
 
-## Disclaimer
+## Note
 
-Not an official government service. Always confirm on the official scheme website.
+This is not an official government app. Please confirm details on the official scheme website before applying.
