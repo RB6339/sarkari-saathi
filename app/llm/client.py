@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-DEFAULT_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+DEFAULT_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 
 class GroqClient:
@@ -36,5 +36,6 @@ class GroqClient:
             json=payload,
             timeout=self.timeout,
         )
-        resp.raise_for_status()
+        if resp.status_code != 200:
+            raise RuntimeError(f"Groq API error {resp.status_code} for model '{self.model}': {resp.text[:300]}")
         return resp.json()["choices"][0]["message"]["content"]
