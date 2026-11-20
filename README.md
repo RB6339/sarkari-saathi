@@ -2,7 +2,7 @@
 
 An assistant that helps people find which government schemes they can get, in Marathi, Hindi or English. You answer a few simple questions and it tells you which schemes you qualify for, what documents you need and how to apply.
 
-Right now this repo has the eligibility engine and the scheme data. The chat and voice parts are next.
+Right now you can chat with it in the terminal. Voice and a web app are next.
 
 ## Why I built this
 
@@ -10,7 +10,7 @@ There are hundreds of central and state schemes, and most people who need them d
 
 ## How it works
 
-The eligibility decision is made by plain rules, not by an LLM. LLMs can make mistakes with things like age limits or income limits, so I keep each scheme's rules as JSON and check them in code. The LLM (coming next) will only handle the conversation and explain the result.
+The eligibility decision is made by plain rules, not by an LLM. LLMs can make mistakes with things like age limits or income limits, so I keep each scheme's rules as JSON and check them in code. The LLM only reads what the user says and turns it into answers like age, state or land size. Short replies like "हो", "नाही" or "45" are read by simple code without calling the LLM at all.
 
 Each scheme gets one of three results:
 
@@ -46,10 +46,16 @@ I took the rules from each scheme's page on [myScheme](https://www.myscheme.gov.
 
 ```
 app/eligibility/engine.py   rules engine
+app/chat/extract.py         LLM reads free text into profile answers
+app/chat/answers.py         reads short replies (yes/no/numbers) without the LLM
+app/chat/session.py         one conversation: read reply, check rules, ask next question
+app/chat/messages.py        fixed text and result cards in en/hi/mr
+app/llm/client.py           Groq API client
 data/schemes/               one JSON file per scheme
 data/profile_fields.json    questions in English, Hindi and Marathi
 tests/                      pytest tests
-demo.py                     small command line demo
+chat.py                     terminal chat
+demo.py                     question-by-question demo without the LLM
 ```
 
 ## Scheme file example
@@ -77,17 +83,45 @@ demo.py                     small command line demo
 ```bash
 pip install -r requirements.txt
 pytest
-python demo.py        # Marathi
-python demo.py en     # English
-python demo.py hi     # Hindi
 ```
+
+For the chat you need a free API key from [Groq](https://console.groq.com). Make a file called `.env`:
+
+```
+GROQ_API_KEY=your_key_here
+```
+
+Then:
+
+```bash
+python chat.py        # Marathi
+python chat.py hi     # Hindi
+python chat.py en     # English
+```
+
+Example:
+
+```
+Saathi: नमस्कार! तुमच्याबद्दल थोडं सांगा: तुमचं वय, तुम्ही कुठे राहता आणि काय काम करता.
+You: मी साताऱ्याचा 45 वर्षांचा शेतकरी आहे, 2 एकर जमीन आहे
+Saathi: तुम्ही पुरुष आहात की महिला?
+You: पुरुष
+...
+Saathi: तुम्ही या योजनांसाठी पात्र असू शकता:
+* पीएम-किसान सन्मान निधी
+  लाभ: प्रति कुटुंब दरवर्षी ₹6,000, ₹2,000 च्या 3 हप्त्यांत थेट बँक खात्यात
+...
+```
+
+`demo.py` asks every question one by one and doesn't need a key.
 
 ## To do
 
 - [x] Rules engine and tests
 - [x] First 13 schemes
 - [ ] More schemes (target 50+)
-- [ ] Chat layer with an LLM
+- [x] Chat in the terminal with an LLM
+- [ ] Translate documents and notes into Hindi and Marathi
 - [ ] Answer questions from official scheme documents
 - [ ] Voice input and output
 - [ ] Web app
