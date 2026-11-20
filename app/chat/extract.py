@@ -101,10 +101,15 @@ def clean(raw: dict, fields: dict) -> dict:
     return out
 
 
-def extract_profile(text: str, client, fields: dict | None = None) -> dict:
+def extract_profile(text: str, client, fields: dict | None = None, asked_field: str | None = None) -> dict:
+    """asked_field is the question we just asked, so a reply like "yes, two" has context."""
     fields = fields or load_fields()
+    system = SYSTEM_PROMPT.format(fields=_field_list(fields))
+    if asked_field:
+        question = fields[asked_field]["question"]["en"]
+        system += f'\nThe assistant just asked: "{question}" (field: {asked_field}).\n'
     messages = [
-        {"role": "system", "content": SYSTEM_PROMPT.format(fields=_field_list(fields))},
+        {"role": "system", "content": system},
         {"role": "user", "content": text},
     ]
     reply = client.chat(messages, json_mode=True)
