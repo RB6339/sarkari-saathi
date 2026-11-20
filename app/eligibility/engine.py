@@ -141,6 +141,31 @@ def evaluate_all(schemes: list[dict], profile: dict) -> list[Result]:
     return [evaluate(s, profile) for s in schemes]
 
 
+# Things a person can change easily, and the value that would help them.
+FIXABLE = {"has_bank_account": True}
+
+
+def near_misses(schemes: list[dict], profile: dict) -> dict[str, list[dict]]:
+    """Schemes the user would get (or might get) if they changed one fixable thing.
+
+    For example, someone without a bank account misses several schemes only
+    because of that. We re-run the rules as if they had one and see what changes.
+    """
+    now = {r.scheme_id: r.status for r in evaluate_all(schemes, profile)}
+    out = {}
+    for field_name, target in FIXABLE.items():
+        if field_name not in profile or profile[field_name] == target:
+            continue
+        changed = {**profile, field_name: target}
+        unlocked = [
+            s for s, r in zip(schemes, evaluate_all(schemes, changed))
+            if now[s["id"]] == Status.NOT_ELIGIBLE and r.status != Status.NOT_ELIGIBLE
+        ]
+        if unlocked:
+            out[field_name] = unlocked
+    return out
+
+
 def next_question(results: list[Result]) -> str | None:
     """Pick the missing field that unblocks the most schemes."""
     counts = Counter(f for r in results if r.status == Status.NEED_INFO for f in r.missing_fields)

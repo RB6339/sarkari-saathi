@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 from app.chat.answers import is_skip, parse_short_answer
 from app.chat.extract import extract_profile
 from app.chat.messages import results_message, t
-from app.eligibility.engine import Status, evaluate_all, load_fields, load_schemes
+from app.eligibility.engine import Status, evaluate_all, load_fields, load_schemes, near_misses
 
 
 @dataclass
@@ -86,4 +86,5 @@ class Session:
         by_id = {s["id"]: s for s in self.schemes}
         eligible = [by_id[r.scheme_id] for r in results if r.status == Status.ELIGIBLE]
         maybe = [by_id[r.scheme_id] for r in results if r.status == Status.NEED_INFO]
-        return results_message(eligible, maybe, self.lang)
+        tips = near_misses(self.schemes, self.profile)
+        return results_message(eligible, maybe, self.lang, tips)

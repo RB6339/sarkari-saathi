@@ -32,6 +32,11 @@ TEXT = {
         "hi": "अभी मेरी सूची में आपके लिए कोई योजना नहीं मिली।",
         "mr": "सध्या माझ्या यादीत तुमच्यासाठी योग्य योजना सापडली नाही.",
     },
+    "tip_has_bank_account": {
+        "en": "Tip: if you open a bank account (a free Jan Dhan account at any bank or post office), you could also get:",
+        "hi": "सुझाव: अगर आप बैंक खाता खोलें (किसी भी बैंक या डाकघर में मुफ़्त जन धन खाता), तो ये योजनाएँ भी मिल सकती हैं:",
+        "mr": "सूचना: तुम्ही बँक खाते उघडले (कोणत्याही बँकेत किंवा पोस्ट ऑफिसमध्ये मोफत जन धन खाते), तर या योजनाही मिळू शकतात:",
+    },
     "benefit": {"en": "Benefit", "hi": "लाभ", "mr": "लाभ"},
     "how_to_apply": {"en": "How to apply", "hi": "आवेदन कैसे करें", "mr": "अर्ज कसा करावा"},
     "documents": {"en": "Documents", "hi": "दस्तावेज़", "mr": "कागदपत्रे"},
@@ -62,7 +67,9 @@ def scheme_card(scheme: dict, lang: str) -> str:
     return "\n".join(lines)
 
 
-def results_message(eligible: list[dict], maybe: list[dict], lang: str) -> str:
+def results_message(eligible: list[dict], maybe: list[dict], lang: str,
+                    tips: dict[str, list[dict]] | None = None) -> str:
+    """tips maps a fixable field (like has_bank_account) to schemes it would unlock."""
     parts = []
     if eligible:
         parts.append(t("eligible_header", lang))
@@ -72,5 +79,9 @@ def results_message(eligible: list[dict], maybe: list[dict], lang: str) -> str:
         parts += [f"* {s['name'][lang]}" for s in maybe]
     if not parts:
         parts.append(t("none_found", lang))
+    for field_name, schemes in (tips or {}).items():
+        lines = [t(f"tip_{field_name}", lang)]
+        lines += [f"* {s['name'][lang]}: {s['benefit'][lang]}" for s in schemes]
+        parts.append("\n".join(lines))
     parts.append(t("disclaimer", lang))
     return "\n\n".join(parts)

@@ -94,3 +94,25 @@ def test_results_message_shows_data_exactly():
 
 def test_no_results_message():
     assert "सापडली नाही" in results_message([], [], "mr")
+
+
+# The exact conversation from a real run: 35-year-old pregnant street vendor, no bank account, no land.
+VENDOR_ANSWERS = {
+    "has_bank_account": "nahi", "owns_cultivable_land": "nahi", "gender": "mahila",
+    "is_poor_household": "ho", "state": "maharashtra", "is_street_vendor": "ho",
+    "household_has_lpg": "nahi", "is_cultivator": "nahi", "is_pregnant_or_new_mother": "ho",
+    "is_govt_employee": "nahi", "is_pm_kisan_beneficiary": "nahi",
+}
+
+
+def test_vendor_is_not_asked_about_pm_kisan_and_gets_bank_tip():
+    s = Session(ScriptedClient([{"age": 35}]), lang="mr")
+    reply = s.handle("35")
+    asked = []
+    while not reply.done:
+        asked.append(reply.asked_field)
+        reply = s.handle(VENDOR_ANSWERS[reply.asked_field])
+    assert "is_pm_kisan_beneficiary" not in asked
+    assert "पीएम स्वनिधी" in reply.text
+    assert "जन धन" in reply.text
+    assert "माझी लाडकी बहीण" in reply.text

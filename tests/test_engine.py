@@ -167,3 +167,16 @@ def test_namo_shetkari_needs_land_so_no_pm_kisan_question():
     assert r.status == Status.NOT_ELIGIBLE
     assert "is_pm_kisan_beneficiary" not in r.missing_fields
 
+
+def test_near_miss_bank_account():
+    from app.eligibility.engine import near_misses
+    profile = {"state": "maharashtra", "gender": "female", "age": 35, "has_bank_account": False}
+    tips = near_misses(list(SCHEMES.values()), profile)
+    unlocked = {s["id"] for s in tips["has_bank_account"]}
+    assert {"ladki_bahin", "pmjjby", "pmsby", "apy"} <= unlocked
+    assert "pm_kisan" not in unlocked
+
+
+def test_no_near_miss_when_already_has_account():
+    from app.eligibility.engine import near_misses
+    assert near_misses(list(SCHEMES.values()), {"age": 35, "has_bank_account": True}) == {}
