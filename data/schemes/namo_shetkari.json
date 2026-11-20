@@ -18,6 +18,11 @@
   "eligibility": {
     "all_of": [
       {
+        "field": "owns_cultivable_land",
+        "op": "eq",
+        "value": true
+      },
+      {
         "field": "is_pm_kisan_beneficiary",
         "op": "eq",
         "value": true

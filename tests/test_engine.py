@@ -42,7 +42,7 @@ def test_pm_kisan_need_info_when_profile_partial():
 
 
 def test_namo_shetkari_only_maharashtra():
-    p = {"state": "Karnataka", "is_pm_kisan_beneficiary": True}
+    p = {"state": "Karnataka", "owns_cultivable_land": True, "is_pm_kisan_beneficiary": True}
     assert evaluate(SCHEMES["namo_shetkari"], p).status == Status.NOT_ELIGIBLE
     p["state"] = "maharashtra"
     assert evaluate(SCHEMES["namo_shetkari"], p).status == Status.ELIGIBLE
@@ -160,3 +160,10 @@ def test_satara_farmer_story():
     assert "pm_kmy" not in eligible      # age 45 > 40
     assert "apy" not in eligible         # age 45 > 40
     assert "ladki_bahin" not in eligible
+
+
+def test_namo_shetkari_needs_land_so_no_pm_kisan_question():
+    r = evaluate(SCHEMES["namo_shetkari"], {"state": "maharashtra", "owns_cultivable_land": False})
+    assert r.status == Status.NOT_ELIGIBLE
+    assert "is_pm_kisan_beneficiary" not in r.missing_fields
+
