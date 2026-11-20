@@ -15,6 +15,7 @@ Try it:
 from __future__ import annotations
 
 import json
+import math
 import sys
 
 from app.eligibility.engine import load_fields
@@ -49,6 +50,8 @@ def _field_list(fields: dict) -> str:
 def _to_bool(v):
     if isinstance(v, bool):
         return v
+    if isinstance(v, int) and v in (0, 1):
+        return bool(v)
     if isinstance(v, str) and v.strip().lower() in {"true", "yes"}:
         return True
     if isinstance(v, str) and v.strip().lower() in {"false", "no"}:
@@ -65,9 +68,15 @@ def _to_number(v, kind):
         n = float(v)
     except (TypeError, ValueError):
         return None
-    if n < 0:
+    if not math.isfinite(n) or n < 0:
         return None
     return int(n) if kind == "int" else n
+
+
+def in_range(value, spec: dict) -> bool:
+    """Reject impossible numbers like age 250."""
+    lo, hi = spec.get("min"), spec.get("max")
+    return (lo is None or value >= lo) and (hi is None or value <= hi)
 
 
 def clean(raw: dict, fields: dict) -> dict:
@@ -90,8 +99,11 @@ def clean(raw: dict, fields: dict) -> dict:
             value = _to_bool(value)
         elif kind in ("int", "float"):
             value = _to_number(value, kind)
+            if value is not None and not in_range(value, spec):
+                value = None
         elif kind == "enum":
             value = str(value).strip().lower()
+            value = spec.get("aliases", {}).get(value, value)
             if value not in spec["values"]:
                 value = None
         else:
@@ -113,6 +125,8 @@ def extract_profile(text: str, client, fields: dict | None = None, asked_field: 
         {"role": "user", "content": text},
     ]
     reply = client.chat(messages, json_mode=True)
+    if not isinstance(reply, str):
+        return {}
     try:
         raw = json.loads(reply)
     except json.JSONDecodeError:

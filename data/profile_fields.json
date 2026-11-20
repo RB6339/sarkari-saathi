@@ -1,6 +1,8 @@
 {
   "age": {
     "type": "int",
+    "min": 0,
+    "max": 120,
     "question": {
       "en": "How old are you?",
       "hi": "आपकी उम्र कितनी है?",
@@ -21,7 +23,62 @@
     }
   },
   "state": {
-    "type": "str",
+    "type": "enum",
+    "values": [
+      "andhra pradesh",
+      "arunachal pradesh",
+      "assam",
+      "bihar",
+      "chhattisgarh",
+      "goa",
+      "gujarat",
+      "haryana",
+      "himachal pradesh",
+      "jharkhand",
+      "karnataka",
+      "kerala",
+      "madhya pradesh",
+      "maharashtra",
+      "manipur",
+      "meghalaya",
+      "mizoram",
+      "nagaland",
+      "odisha",
+      "punjab",
+      "rajasthan",
+      "sikkim",
+      "tamil nadu",
+      "telangana",
+      "tripura",
+      "uttar pradesh",
+      "uttarakhand",
+      "west bengal",
+      "andaman and nicobar islands",
+      "chandigarh",
+      "dadra and nagar haveli and daman and diu",
+      "delhi",
+      "jammu and kashmir",
+      "ladakh",
+      "lakshadweep",
+      "puducherry"
+    ],
+    "aliases": {
+      "महाराष्ट्र": "maharashtra",
+      "mh": "maharashtra",
+      "maharastra": "maharashtra",
+      "गुजरात": "gujarat",
+      "कर्नाटक": "karnataka",
+      "गोवा": "goa",
+      "दिल्ली": "delhi",
+      "new delhi": "delhi",
+      "बिहार": "bihar",
+      "उत्तर प्रदेश": "uttar pradesh",
+      "मध्य प्रदेश": "madhya pradesh",
+      "राजस्थान": "rajasthan",
+      "तेलंगाना": "telangana",
+      "orissa": "odisha",
+      "pondicherry": "puducherry"
+    },
     "question": {
       "en": "Which state do you live in?",
       "hi": "आप किस राज्य में रहते हैं?",
@@ -54,6 +111,9 @@
   },
   "monthly_pension": {
     "type": "int",
+    "min": 0,
+    "max": 10000000,
+    "none_is_zero": true,
     "question": {
       "en": "If anyone in your family gets a pension, how much per month? (Say 0 if none)",
       "hi": "अगर परिवार में किसी को पेंशन मिलती है, तो हर महीने कितनी? (न हो तो 0)",
@@ -110,6 +170,8 @@
   },
   "annual_family_income": {
     "type": "int",
+    "min": 0,
+    "max": 100000000,
     "question": {
       "en": "What is your family's total income per year, in rupees?",
       "hi": "आपके परिवार की कुल सालाना आय कितनी है (रुपये में)?",
@@ -126,6 +188,8 @@
   },
   "land_hectares": {
     "type": "float",
+    "min": 0,
+    "max": 10000,
     "question": {
       "en": "How much farm land do you own, in hectares? (1 hectare ≈ 2.5 acres)",
       "hi": "आपके पास कितनी खेती की ज़मीन है, हेक्टेयर में? (1 हेक्टेयर ≈ 2.5 एकड़)",

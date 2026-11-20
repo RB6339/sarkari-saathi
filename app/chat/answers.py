@@ -34,7 +34,15 @@ def is_skip(text: str) -> bool:
 
 def parse_short_answer(text: str, spec: dict):
     """Return the value for one field, or None if the reply isn't a simple answer."""
-    t = _norm(text)
+    value = _parse(_norm(text), spec)
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        lo, hi = spec.get("min"), spec.get("max")
+        if (lo is not None and value < lo) or (hi is not None and value > hi):
+            return None
+    return value
+
+
+def _parse(t: str, spec: dict):
     kind = spec["type"]
 
     if kind == "bool":
@@ -45,6 +53,8 @@ def parse_short_answer(text: str, spec: dict):
         return None
 
     if kind in ("int", "float"):
+        if t in NO and spec.get("none_is_zero"):
+            return 0
         m = re.fullmatch(r"(\d+(?:\.\d+)?)\s*(?:lakh|लाख)?", t.replace(",", ""))
         if not m:
             return None
@@ -54,8 +64,12 @@ def parse_short_answer(text: str, spec: dict):
         return int(n) if kind == "int" else n
 
     if kind == "enum":
+        values = spec.get("values", [])
+        t = spec.get("aliases", {}).get(t, t)
+        if t in values:
+            return t
         for value, words in GENDER.items():
-            if t in words and value in spec.get("values", []):
+            if t in words and value in values:
                 return value
         return None
 

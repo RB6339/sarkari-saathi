@@ -30,12 +30,19 @@ class GroqClient:
         if json_mode:
             payload["response_format"] = {"type": "json_object"}
 
-        resp = httpx.post(
-            GROQ_URL,
-            headers={"Authorization": f"Bearer {self.api_key}"},
-            json=payload,
-            timeout=self.timeout,
-        )
+        try:
+            resp = httpx.post(
+                GROQ_URL,
+                headers={"Authorization": f"Bearer {self.api_key}"},
+                json=payload,
+                timeout=self.timeout,
+            )
+        except httpx.HTTPError as err:
+            raise RuntimeError(f"Could not reach Groq ({type(err).__name__}). Check your internet connection.") from err
+
         if resp.status_code != 200:
             raise RuntimeError(f"Groq API error {resp.status_code} for model '{self.model}': {resp.text[:300]}")
-        return resp.json()["choices"][0]["message"]["content"]
+        try:
+            return resp.json()["choices"][0]["message"]["content"] or ""
+        except (ValueError, KeyError, IndexError, TypeError) as err:
+            raise RuntimeError(f"Unexpected reply from Groq: {resp.text[:300]}") from err
