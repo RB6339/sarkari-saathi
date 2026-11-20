@@ -36,13 +36,25 @@ class Session:
     skipped: set[str] = field(default_factory=set)
     asked_field: str | None = None
     llm_calls: int = 0
+    misses: int = 0
+
+    MAX_MISSES = 2          # after this many unclear replies, move on to the next question
+    MAX_INPUT_CHARS = 1000  # very long input costs tokens and is never needed
 
     def start(self) -> Reply:
         return Reply(t("welcome", self.lang))
 
     def handle(self, text: str) -> Reply:
-        text = text.strip()
+        text = text.strip()[: self.MAX_INPUT_CHARS]
         understood = self._read(text) if text else False
+
+        if understood or self.asked_field is None:
+            self.misses = 0
+        else:
+            self.misses += 1
+            if self.misses >= self.MAX_MISSES:
+                self.skipped.add(self.asked_field)
+                self.misses = 0
 
         results = evaluate_all(self.schemes, self.profile)
         field_name = self._next_field(results)

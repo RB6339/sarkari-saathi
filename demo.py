@@ -7,20 +7,8 @@
 
 import sys
 
+from app.chat.answers import parse_short_answer
 from app.eligibility.engine import Status, evaluate_all, load_fields, load_schemes, next_question
-
-YES = {"y", "yes", "ho", "हो", "हाँ", "हां", "ha", "haan", "true", "1"}
-
-
-def parse(raw: str, ftype: str):
-    raw = raw.strip()
-    if ftype == "int":
-        return int(raw.replace(",", ""))
-    if ftype == "float":
-        return float(raw)
-    if ftype == "bool":
-        return raw.lower() in YES
-    return raw.lower()
 
 
 def main(lang: str = "mr") -> None:
@@ -34,7 +22,14 @@ def main(lang: str = "mr") -> None:
         if field is None:
             break
         spec = fields[field]
-        profile[field] = parse(input(f"{spec['question'][lang]} > "), spec["type"])
+        value = None
+        while value is None:
+            try:
+                value = parse_short_answer(input(f"{spec['question'][lang]} > "), spec)
+            except (EOFError, KeyboardInterrupt):
+                print()
+                return
+        profile[field] = value
 
     print()
     for r in results:
