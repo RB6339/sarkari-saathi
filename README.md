@@ -2,7 +2,7 @@
 
 An assistant that helps people find which government schemes they can get, in Marathi, Hindi or English. You answer a few simple questions and it tells you which schemes you qualify for, what documents you need and how to apply.
 
-Right now you can chat with it in the terminal. Voice and a web app are next.
+You can use it as a web page (type or speak) or in the terminal.
 
 ## Why I built this
 
@@ -50,10 +50,12 @@ app/chat/extract.py         LLM reads free text into profile answers
 app/chat/answers.py         reads short replies (yes/no/numbers) without the LLM
 app/chat/session.py         one conversation: read reply, check rules, ask next question
 app/chat/messages.py        fixed text and result cards in en/hi/mr
-app/llm/client.py           Groq API client
+app/llm/client.py           Groq API client (chat and speech-to-text)
+app/web.py                  web page (Gradio)
 data/schemes/               one JSON file per scheme
 data/profile_fields.json    questions in English, Hindi and Marathi
 tests/                      pytest tests
+web.py                      starts the web page
 chat.py                     terminal chat
 demo.py                     question-by-question demo without the LLM
 ```
@@ -91,7 +93,15 @@ For the chat you need a free API key from [Groq](https://console.groq.com). Make
 GROQ_API_KEY=your_key_here
 ```
 
-Then:
+Web page (type or press the mic and speak):
+
+```bash
+python web.py
+```
+
+and open http://127.0.0.1:7860. Speech is turned into text with Whisper on Groq.
+
+Terminal:
 
 ```bash
 python chat.py        # Marathi
@@ -123,8 +133,10 @@ Saathi: तुम्ही या योजनांसाठी पात्र
 - [x] Chat in the terminal with an LLM
 - [ ] Translate documents and notes into Hindi and Marathi
 - [ ] Answer questions from official scheme documents
-- [ ] Voice input and output
-- [ ] Web app
+- [x] Voice input
+- [ ] Voice output (read the answer aloud)
+- [x] Web app
+- [ ] Put it online on Hugging Face Spaces
 - [ ] Accuracy test set
 
 ## Note
