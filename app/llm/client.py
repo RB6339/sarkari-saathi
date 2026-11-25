@@ -14,7 +14,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_AUDIO_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
 DEFAULT_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+SPEECH_MODEL = os.getenv("GROQ_SPEECH_MODEL", "whisper-large-v3")
 
 
 class GroqClient:
@@ -45,4 +47,28 @@ class GroqClient:
         try:
             return resp.json()["choices"][0]["message"]["content"] or ""
         except (ValueError, KeyError, IndexError, TypeError) as err:
+            raise RuntimeError(f"Unexpected reply from Groq: {resp.text[:300]}") from err
+
+    def transcribe(self, audio_path: str, language: str | None = None) -> str:
+        """Speech to text with Whisper. language is "mr", "hi" or "en" (helps accuracy)."""
+        data = {"model": SPEECH_MODEL, "response_format": "json"}
+        if language:
+            data["language"] = language
+        try:
+            with open(audio_path, "rb") as f:
+                resp = httpx.post(
+                    GROQ_AUDIO_URL,
+                    headers={"Authorization": f"Bearer {self.api_key}"},
+                    data=data,
+                    files={"file": (os.path.basename(audio_path), f)},
+                    timeout=60.0,
+                )
+        except httpx.HTTPError as err:
+            raise RuntimeError(f"Could not reach Groq ({type(err).__name__}). Check your internet connection.") from err
+
+        if resp.status_code != 200:
+            raise RuntimeError(f"Groq speech error {resp.status_code}: {resp.text[:300]}")
+        try:
+            return (resp.json().get("text") or "").strip()
+        except ValueError as err:
             raise RuntimeError(f"Unexpected reply from Groq: {resp.text[:300]}") from err
