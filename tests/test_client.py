@@ -44,6 +44,7 @@ def test_transcribe_sends_language_and_returns_text(monkeypatch, tmp_path):
     assert text == "मी शेतकरी आहे"
     assert seen["url"].endswith("/audio/transcriptions")
     assert seen["data"]["language"] == "mr"
+    assert "शेतकरी" in seen["data"]["prompt"]     # Marathi spelling hint is sent
 
 
 def test_transcribe_error(monkeypatch, tmp_path):

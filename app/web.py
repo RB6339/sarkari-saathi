@@ -53,11 +53,12 @@ def start(lang_label: str, make_client=_default_client):
     return session, [{"role": "assistant", "content": session.start().text}]
 
 
-def send(text: str, history: list, session):
+def send(text: str, history: list, session, shown: str | None = None):
+    """shown is what appears in the user's bubble (for voice: the words we heard)."""
     text = (text or "").strip()
     if not text or session is None:
         return "", history, session
-    history = history + [{"role": "user", "content": text}]
+    history = history + [{"role": "user", "content": shown or text}]
     try:
         reply = session.handle(text)
         history.append({"role": "assistant", "content": to_markdown(reply.text)})
@@ -75,7 +76,7 @@ def send_voice(audio_path: str | None, history: list, session):
         return None, history + [{"role": "assistant", "content": f"⚠️ {err}"}], session
     if not text:
         return None, history + [{"role": "assistant", "content": VOICE_EMPTY[session.lang]}], session
-    _, history, session = send(text, history, session)
+    _, history, session = send(text, history, session, shown=f"🎤 {text}")
     return None, history, session
 
 

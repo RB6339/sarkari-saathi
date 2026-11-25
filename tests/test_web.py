@@ -52,7 +52,7 @@ def test_voice_uses_session_language():
     session, history = start("मराठी", lambda: client)
     _, history, session = send_voice("/tmp/voice.webm", history, session)
     assert client.transcribed == ["mr"]
-    assert history[-2]["content"] == "35"
+    assert history[-2]["content"] == "🎤 35"   # user sees exactly what was heard
 
 
 def test_silent_recording():

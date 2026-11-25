@@ -18,6 +18,15 @@ GROQ_AUDIO_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
 DEFAULT_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 SPEECH_MODEL = os.getenv("GROQ_SPEECH_MODEL", "whisper-large-v3")
 
+# A short example sentence in the user's language. Whisper uses it as a hint for
+# spelling and vocabulary, which helps a lot with Marathi words like "एकर" or "शेतकरी".
+SPEECH_HINTS = {
+    "mr": "नमस्कार. मी शेतकरी आहे. माझं वय 45 वर्षे आहे. मी सातारा, महाराष्ट्र येथे राहतो. "
+          "माझ्याकडे 2 एकर जमीन आहे. माझं बँक खातं आहे. हो. नाही. माहित नाही.",
+    "hi": "नमस्ते. मैं किसान हूँ. मेरी उम्र 45 साल है. मैं पुणे, महाराष्ट्र में रहता हूँ. "
+          "मेरे पास 2 एकड़ ज़मीन है. मेरा बैंक खाता है. हाँ. नहीं. पता नहीं.",
+}
+
 
 class GroqClient:
     def __init__(self, api_key: str | None = None, model: str = DEFAULT_MODEL, timeout: float = 30.0):
@@ -51,9 +60,11 @@ class GroqClient:
 
     def transcribe(self, audio_path: str, language: str | None = None) -> str:
         """Speech to text with Whisper. language is "mr", "hi" or "en" (helps accuracy)."""
-        data = {"model": SPEECH_MODEL, "response_format": "json"}
+        data = {"model": SPEECH_MODEL, "response_format": "json", "temperature": "0"}
         if language:
             data["language"] = language
+        if language in SPEECH_HINTS:
+            data["prompt"] = SPEECH_HINTS[language]
         try:
             with open(audio_path, "rb") as f:
                 resp = httpx.post(
