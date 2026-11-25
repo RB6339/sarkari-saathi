@@ -6,6 +6,8 @@ Each browser tab gets its own Session, kept in gr.State.
 
 from __future__ import annotations
 
+import inspect
+
 import gradio as gr
 
 from app.chat.session import Session
@@ -28,6 +30,13 @@ START_AGAIN = {"mr": "पुन्हा सुरू करा", "hi": "फि�
 def _default_client():
     from app.llm.client import GroqClient
     return GroqClient()
+
+
+def chatbot_kwargs() -> dict:
+    """Gradio 5 needs type="messages" for role/content messages; Gradio 6 removed the option."""
+    if "type" in inspect.signature(gr.Chatbot.__init__).parameters:
+        return {"type": "messages"}
+    return {}
 
 
 def to_markdown(text: str) -> str:
@@ -77,7 +86,7 @@ def build_ui(make_client=_default_client) -> gr.Blocks:
             "सरकारी योजना शोधा · सरकारी योजनाएँ खोजें · Find government schemes you can get"
         )
         lang = gr.Radio(list(LANGUAGES), value="मराठी", label="भाषा / Language")
-        chat = gr.Chatbot(height=480, label="Saathi")
+        chat = gr.Chatbot(height=480, label="Saathi", **chatbot_kwargs())
         with gr.Row():
             box = gr.Textbox(placeholder="इथे लिहा... / यहाँ लिखें... / Type here...",
                              show_label=False, scale=5)

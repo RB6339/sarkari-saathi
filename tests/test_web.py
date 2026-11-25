@@ -77,3 +77,12 @@ def test_markdown_keeps_line_breaks():
 
 def test_ui_builds():
     assert build_ui(FakeClient) is not None
+
+
+def test_chatbot_uses_role_content_messages():
+    """Gradio 5 defaults to an old 'tuples' format, which breaks our role/content messages."""
+    import gradio as gr
+
+    demo = build_ui(FakeClient)
+    chatbots = [b for b in demo.blocks.values() if isinstance(b, gr.Chatbot)]
+    assert chatbots and getattr(chatbots[0], "type", "messages") == "messages"
